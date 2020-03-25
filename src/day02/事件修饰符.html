@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件修饰符</title>
+    <script src="../../lib/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <!-- .stop  阻止事件冒泡 -->
+    <!--<div style="height: 100px" @click="divHandler()">-->
+        <!--<input type="button" value="修饰按钮" @click.stop="btnHandler()">-->
+    <!--</div>-->
+
+    <!-- .prevent 取消默认行为 -->
+    <!--<a href="http://baidu.com" @click.prevent="linkClick()">取消默认行为</a>-->
+
+    <!-- .capture  使用事件捕获事件 -->
+    <!--<div style="height: 100px" @click.capture="divHandler()">-->
+    <!--<input type="button" value="修饰按钮" @click="btnHandler()">-->
+    <!--</div>-->
+
+    <!-- .self  实现只有点击当前元素才触发事件 .self只会实现自身的，不会阻止其他的 -->
+    <!--<div style="height: 100px" @click.self="divHandler()">-->
+    <!--<input type="button" value="修饰按钮" @click="btnHandler()">-->
+    <!--</div>-->
+
+    <!-- .once 只触发一次事件处理函数 -->
+    <!--<a href="http://baidu.com" @click.once="linkClick()">只触发一次</a>-->
+
+</div>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {},
+        methods: {
+            btnHandler() {
+                console.log('按钮事件')
+            },
+            divHandler() {
+                console.log('div事件')
+            },
+            linkClick() {
+                console.log('连接点击事件，阻止默认行为')
+            }
+        }
+    })
+</script>
+
+</body>
+</html>

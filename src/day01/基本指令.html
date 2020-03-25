@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-cloak</title>
+    <script src="../../lib/vue.js"></script>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<!-- 将来new的实例，会控制这个元素中的所有内容 -->
+
+<!--
+    插值表达式和v-text的区别
+    插值表达式可以把Vue传递过来的数据和前台用户自己定义的数据结合在一起， 不设置v-cloak会有瞬间闪烁{{msg}}
+    v-text只能显示Vue对象传递过来的数据，会替换掉节点里已有的内容
+
+    总结：只是简单绑定数据的话，使用v-text，     需要自行处理的话，则使用差值表达式，并且不要忘记使用v-cloak
+-->
+
+
+<div id="app">
+    <p v-cloak>{{msg}}</p>
+    <h4 v-text="msg"></h4>
+
+    <div>{{msg1}}</div>
+    <!-- v-html 插入元素 -->
+    <div v-html="msg1"></div>
+    <!-- v-bind可以简写为:, 可以写js表达式-->
+    <!-- v-on 绑定的是事件，可以简写为@-->
+    <input type="button" value="按钮" v-bind:title="mytitle + 'haha'" v-on:click="show">
+</div>
+<script>
+    var vm = new Vue({
+        el: '#app', //表示当前我们vue的这个实例，就多了一个vue的实例
+        data: {
+            msg: '123', // 通过vue的指令，很方便的就能把数据渲染到页面上，程序员不需要操作DOM元素了，【前端的Vue之类的框架，不提倡我们去手动操作DOM元素了】
+            msg1: '<h1>我是一个粉刷匠！</h1>',
+            mytitle: '标题',
+        },
+        methods: {
+             // 这个method属性定义了当前vue实例所有可用的方法
+            show: function () {
+                alert('你弹出的是个什么东西')
+            }
+        }
+    })
+</script>
+</body>
+</html>
+
+<!--
+1、如何定义一个基本的vue结构
+插值表达式 v-text v-cloak v-html
+v-bind  :
+v-on  @
+
+-->
